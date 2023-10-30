@@ -18,7 +18,7 @@ export default async function HomePage({
       <Link href={"/todos"}>go to todos</Link>
       <SearchTodo />
       <AddTodo />
-      <TodoLength todos={todos} />
+      <TodoLength />
       <TodoList todos={todos} />
     </section>
   );

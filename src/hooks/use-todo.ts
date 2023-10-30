@@ -1,6 +1,17 @@
 import { Todo } from "@prisma/client";
-import { addTodo, deleteTodo, doneTodo, getTodos } from "@/_action";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  addTodo,
+  deleteTodo,
+  doneTodo,
+  getAllTodos,
+  getTodos,
+} from "@/_action";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 const useQuerySearch = () => {
@@ -19,7 +30,16 @@ export const useTodos = (todos: Todo[]) => {
     refetchOnWindowFocus: false,
   });
 };
-
+// get all todos with suspense
+export const useAllTodos = (todos: Todo[]) => {
+  return useQuery({
+    queryKey: ["todos"],
+    queryFn: getAllTodos,
+    initialData: todos,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+};
 export const useAddTodo = () => {
   const queryClient = useQueryClient();
   const query = useQuerySearch();

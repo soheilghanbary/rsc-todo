@@ -1,5 +1,10 @@
 "use client";
-import { useDeleteTodo, useDoneTodo, useTodos } from "@/hooks/use-todo";
+import {
+  useAllTodos,
+  useDeleteTodo,
+  useDoneTodo,
+  useTodos,
+} from "@/hooks/use-todo";
 import { Todo } from "@prisma/client";
 import { Button } from "./ui/button";
 import { PropsWithChildren } from "react";
@@ -27,14 +32,13 @@ const TodoAction = ({ todo, index }: { todo: Todo; index: number }) => {
       <Button
         size={"sm"}
         variant={"destructive"}
-        disabled={index % 2 === 0}
         onClick={() => deleteMutation.mutate(todo.id)}
       >
         Delete
       </Button>
       <Button
         size={"sm"}
-        disabled={doneMutation.isLoading}
+        disabled={doneMutation.isPending}
         onClick={() => doneMutation.mutate({ ...todo, done: !todo.done })}
       >
         Done

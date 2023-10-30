@@ -1,8 +1,3 @@
-"use client";
-import { useTodos } from "@/hooks/use-todo";
-import { Todo } from "@prisma/client";
-
-export default function TodoLength({ todos }: { todos: Todo[] }) {
-  const { data } = useTodos(todos);
-  return <h2>{data.length}</h2>;
+export default function TodoLength() {
+  return <h2>Todos: </h2>;
 }

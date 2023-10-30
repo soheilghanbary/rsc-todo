@@ -10,6 +10,8 @@ export const getTodos = async (query: string) => {
   }
 };
 
+export const getAllTodos = async () => await db.todo.findMany();
+
 export const allTodos = async () => await db.todo.findMany();
 
 export const addTodo = async (text: string) =>
